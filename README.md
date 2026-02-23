@@ -1,2 +1,2 @@
-# projeto-FDS
-projeto de desenvolvimento de um software
+# Game_Ranking
+Página de avaliação de games e críticas.
