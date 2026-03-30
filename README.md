@@ -66,7 +66,12 @@ python manage.py runserver
 - Historias do projeto: https://docs.google.com/document/d/1koSvhLiN-m2yipQsbQeLWTG0vbIIWovv3-FDx5r-KnA/edit?tab=t.0
 - Prints do Jira: https://drive.google.com/drive/folders/187pxLEDKzr8ZbCQJDWKPiKosjQO6r-wn?usp=sharing
 - Screencast: https://www.youtube.com/watch?v=V_xk95SDth4
+## Entrega 02
 
+- Prints do Jira: https://drive.google.com/drive/folders/187pxLEDKzr8ZbCQJDWKPiKosjQO6r-wn?usp=sharing
+- Screencast: https://youtu.be/GMoFRywxXDE 
+- Relatório pair programing: https://docs.google.com/document/d/1ghc7w0ws937uktHESDruGyv4_7DGh1inWLtMlZLwBgc/edit?usp=sharing
+- 
 ## Observacoes
 
 Como o repositório ainda nao possui a estrutura completa do Django versionada, os comandos acima assumem que o arquivo `manage.py` e o projeto Django serao adicionados ou ja existem no ambiente local de desenvolvimento.
