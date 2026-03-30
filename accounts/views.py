@@ -1,42 +1,53 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import RegisterForm
+from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, render
+
+from .forms import LoginForm, RegisterForm
+
 
 def register_view(request):
     if request.user.is_authenticated:
         return redirect('game_search')
+
     form = RegisterForm(request.POST or None)
+
     if request.method == 'POST' and form.is_valid():
         user = form.save()
         login(request, user)
+        messages.success(request, 'Conta criada com sucesso. Voce ja esta logado.')
         return redirect('game_search')
+
     return render(request, 'accounts/register.html', {'form': form})
+
 
 def login_view(request):
     if request.user.is_authenticated:
         return redirect('game_search')
-    error = None
-    if request.method == 'POST':
-        user = authenticate(
-            request,
-            username=request.POST.get('username'),
-            password=request.POST.get('password'),
-        )
-        if user:
-            login(request, user)
-            return redirect(request.GET.get('next', 'game_search'))
-        error = 'Usuário ou senha incorretos.'
-    return render(request, 'accounts/login.html', {'error': error})
+
+    form = LoginForm(request, data=request.POST or None)
+    next_url = request.GET.get('next') or request.POST.get('next') or 'game_search'
+
+    if request.method == 'POST' and form.is_valid():
+        login(request, form.get_user())
+        messages.success(request, 'Login realizado com sucesso.')
+        return redirect(next_url)
+
+    return render(request, 'accounts/login.html', {
+        'form': form,
+        'next': next_url,
+    })
+
 
 def logout_view(request):
     logout(request)
+    messages.success(request, 'Voce saiu da sua conta.')
     return redirect('login')
+
 
 @login_required
 def profile_view(request):
-    ratings  = request.user.ratings.select_related('game').order_by('-game__title')
+    ratings = request.user.ratings.select_related('game').order_by('-game__title')
     comments = request.user.comments.select_related('game').order_by('-created_at')
     return render(request, 'accounts/profile.html', {
         'ratings': ratings,

@@ -30,6 +30,9 @@ if render_external_hostname:
 
 CSRF_TRUSTED_ORIGINS = csrf_trusted_origins
 
+database_url = os.getenv("DATABASE_URL", "")
+database_uses_ssl = bool(database_url) and not database_url.startswith("sqlite")
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -76,7 +79,7 @@ DATABASES = {
     'default': dj_database_url.config(
         default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
         conn_max_age=600,
-        ssl_require=not DEBUG,
+        ssl_require=database_uses_ssl,
     )
 }
 

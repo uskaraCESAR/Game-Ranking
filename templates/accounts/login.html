@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}Entrar | Game_Ranking{% endblock %}
+
+{% block extra_css %}
+<style>
+  .auth-shell {
+    min-height: calc(100vh - 56px);
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    background:
+      radial-gradient(circle at top, rgba(123, 140, 222, 0.18), transparent 35%),
+      linear-gradient(180deg, #101019 0%, #0b0b12 100%);
+  }
+
+  .auth-card {
+    width: min(100%, 440px);
+    background: rgba(22, 22, 30, 0.96);
+    border: 1px solid #2a2a3a;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  }
+
+  .auth-card h1 {
+    color: #f2f3ff;
+    font-size: 1.8rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .auth-card p {
+    color: #9ca3c9;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .auth-form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .auth-field label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: #d8daf0;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .auth-errors {
+    list-style: none;
+    background: rgba(190, 70, 70, 0.13);
+    border: 1px solid rgba(227, 99, 99, 0.3);
+    color: #ffb3b3;
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .auth-field ul {
+    list-style: none;
+    margin-top: 0.4rem;
+    color: #ffb3b3;
+    font-size: 0.82rem;
+  }
+
+  .auth-submit {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #7b8cde, #6070c8);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+  }
+
+  .auth-footer {
+    margin-top: 1.2rem;
+    color: #9ca3c9;
+    font-size: 0.92rem;
+    text-align: center;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="auth-shell">
+  <div class="auth-card">
+    <h1>Entrar</h1>
+    <p>Use seu nome de usuario e senha para acessar sua conta.</p>
+
+    {% if form.non_field_errors %}
+      <ul class="auth-errors">
+        {% for error in form.non_field_errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <form method="post" class="auth-form">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}">
+
+      {% for field in form %}
+        <div class="auth-field">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.errors %}
+            <ul>
+              {% for error in field.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <button type="submit" class="auth-submit">Entrar</button>
+    </form>
+
+    <div class="auth-footer">
+      Ainda nao tem conta? <a href="{% url 'register' %}">Cadastre-se</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
