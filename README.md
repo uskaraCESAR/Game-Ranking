@@ -33,6 +33,64 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+## Deploy no Render com PostgreSQL
+
+O projeto ja esta preparado para:
+
+- usar `SQLite` localmente quando `DATABASE_URL` nao estiver definida
+- usar `PostgreSQL` no Render quando `DATABASE_URL` estiver definida
+- criar ou atualizar um superusuario automaticamente no deploy usando variaveis de ambiente
+
+### Arquivos de deploy
+
+- `build.sh`: instala dependencias, roda `collectstatic`, `migrate` e `ensure_superuser`
+- `render.yaml`: define o banco PostgreSQL e o servico web no Render
+- `accounts/management/commands/ensure_superuser.py`: cria ou atualiza o superusuario sem prompt interativo
+
+### Variaveis de ambiente importantes
+
+No Render, configure estas variaveis no servico web:
+
+```text
+SECRET_KEY=gere-uma-chave-segura
+DEBUG=False
+ALLOWED_HOSTS=seu-servico.onrender.com
+CSRF_TRUSTED_ORIGINS=https://seu-servico.onrender.com
+DJANGO_SUPERUSER_USERNAME=admin
+DJANGO_SUPERUSER_EMAIL=admin@exemplo.com
+DJANGO_SUPERUSER_PASSWORD=uma-senha-forte
+```
+
+Se estiver usando o `render.yaml`, o `DATABASE_URL` ja sera ligado automaticamente ao banco criado no Blueprint.
+
+### Fluxo recomendado
+
+1. Suba o projeto para o GitHub.
+2. No Render, crie o deploy via `Blueprint` apontando para este repositorio.
+3. Antes do primeiro deploy terminar, confira as variaveis de ambiente do servico.
+4. No fim do deploy, o Render vai:
+   - instalar dependencias
+   - coletar os arquivos estaticos
+   - aplicar migracoes
+   - criar ou atualizar o superusuario
+5. Acesse `/admin` com o usuario configurado nas variaveis `DJANGO_SUPERUSER_*`.
+
+### Migrando dados do SQLite para PostgreSQL
+
+Se voce quiser levar os dados atuais do `db.sqlite3` para o PostgreSQL:
+
+```bash
+python manage.py dumpdata --natural-foreign --natural-primary -e contenttypes -e auth.permission --indent 2 > data.json
+```
+
+Depois de apontar `DATABASE_URL` para o PostgreSQL e rodar `migrate`:
+
+```bash
+python manage.py loaddata data.json
+```
+
+Se preferir, voce tambem pode comecar com o banco novo vazio e deixar apenas o superusuario ser criado no primeiro deploy.
+
 ## Colaboradores
 
 - Arthur de Almeida Oliveira

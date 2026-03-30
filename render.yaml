@@ -1,0 +1,24 @@
+databases:
+  - name: projeto-fds-db
+    plan: free
+    databaseName: projeto_fds
+    user: projeto_fds
+
+services:
+  - type: web
+    name: projeto-fds
+    runtime: python
+    plan: free
+    buildCommand: ./build.sh
+    startCommand: python -m gunicorn Game_Ranking.wsgi:application
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: projeto-fds-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: .onrender.com
