@@ -125,9 +125,10 @@ Também foram preenchidas no painel do Render estas variáveis:
 
 ## Entrega 2
 
-- Site deploy: https://game-ranking.onrender.com/
-- Prints do Jira: <img width="1920" height="948" alt="2image" src="https://github.com/user-attachments/assets/3311cfad-5c0e-4bf4-ab2d-5f1037d5d148" />
-                  <img width="1761" height="916" alt="sprint2" src="https://github.com/user-attachments/assets/53430806-ad34-4a9d-915c-a2f255f6fbcd" />
+- Site deploy(DESATUALIZADO, novo link na entrega 3): https://game-ranking.onrender.com/
+- Prints do Jira: <img width="1693" height="341" alt="erawerawraw" src="https://github.com/user-attachments/assets/47e204a0-f367-4e75-911e-a5b0042cf65b" />
+<img width="1920" height="998" alt="image" src="https://github.com/user-attachments/assets/3b19fc64-7c8f-4570-87fe-de9596b16722" />
+
 
 - Screencast: https://youtu.be/iYjTGXvBgdk
 - Relatório de pair programming: 
@@ -135,10 +136,14 @@ Também foram preenchidas no painel do Render estas variáveis:
 Durante a prática de pair programming, as duplas alternaram os papéis de driver e navigator, mantendo comunicação constante, revisando o código continuamente e dividindo tarefas de forma lógica para garantir produtividade. Como resultado, houve redução de erros, maior clareza nas soluções, aprendizado mútuo, melhoria na qualidade do código e desenvolvimento de habilidades de comunicação e trabalho em equipe. Apesar de desafios como adaptação ao ritmo do parceiro, divergências de ideias e maior tempo na tomada de decisões, esses foram superados com diálogo e colaboração, tornando a prática eficaz tanto tecnicamente quanto no fortalecimento de competências interpessoais essenciais na área de tecnologia.
 Durante a prática de pair programming, as duplas alternaram os papéis de driver e navigator, mantendo comunicação constante, revisando o código continuamente e dividindo tarefas de forma lógica para garantir produtividade. Como resultado, houve redução de erros, maior clareza nas soluções, aprendizado mútuo, melhoria na qualidade do código e desenvolvimento de habilidades de comunicação e trabalho em equipe. Apesar de desafios como adaptação ao ritmo do parceiro, divergências de ideias e maior tempo na tomada de decisões, esses foram superados com diálogo e colaboração, tornando a prática eficaz tanto tecnicamente quanto no fortalecimento de competências interpessoais essenciais na área de tecnologia.
 ## Entrega 3
--Prints do jira:
--screencast (histórias):
--screencast (CI/CD):
--screencast (Testes):
--Bugtracker:
+- Site deploy: https://game-ranking-ehdyhxdea8cbhyee.brazilsouth-01.azurewebsites.net/ 
+- Prints do jira:<img width="1920" height="704" alt="image" src="https://github.com/user-attachments/assets/c8be4d97-6563-4d7d-970b-bf2f43b976e4" />
+<img width="1920" height="997" alt="image" src="https://github.com/user-attachments/assets/0d5ab91e-05fb-4fa6-9956-b9ed476e58f9" />
+
+
+- screencast (histórias):
+- screencast (Testes):
+- Bugtracker:<img width="1920" height="998" alt="bugtrackerprint1" src="https://github.com/user-attachments/assets/48df8e3b-2061-4aeb-bf5b-66bca9a5a7e4" />
+
 - Relatório de pair programming:
 Após um período de continuidade na prática de pair programming, foi possível observar uma evolução significativa na dinâmica das duplas, com maior sincronização entre driver e navigator e redução das divergências iniciais. A comunicação tornou-se mais objetiva e eficiente, permitindo decisões mais rápidas e um fluxo de trabalho mais natural. Além disso, houve aumento na confiança entre os participantes, refletindo em maior autonomia e produtividade. Os erros continuaram sendo minimizados e a qualidade do código manteve-se elevada, evidenciando que a prática constante contribui não apenas para o aprimoramento técnico, mas também para o fortalecimento do trabalho em equipe e adaptação a diferentes estilos de pensamento.
