@@ -82,6 +82,23 @@ npm run cypress:run
 
 Os testes assumem que o servidor está em `http://127.0.0.1:8000` e que o banco tem ao menos um jogo cadastrado (o `db.sqlite3` do repositório já atende).
 
+### Rodar contra o servidor publicado (Azure)
+
+Os mesmos specs podem rodar contra o site no ar — não precisa subir o Django local. Os scripts já têm a `baseUrl` de produção apontando para a Azure:
+
+```bash
+npm run cypress:run:prod    # headless, gera vídeo em cypress/videos/
+npm run cypress:open:prod   # modo interativo
+```
+
+Por baixo dos panos é só um `cypress run --config baseUrl=...`. Para apontar pra qualquer outra URL (staging, etc.), dá pra usar a env `CYPRESS_BASE_URL`:
+
+```bash
+CYPRESS_BASE_URL=https://outro-deploy.example.com npm run cypress:run
+```
+
+> ⚠️ **Atenção:** rodar contra produção cria usuários, avaliações e comentários reais no banco. Cada execução adiciona um usuário com nome `e2e_user_<timestamp>` e deixa avaliações/comentários nos jogos visitados pelos testes. Use só pra validar uma entrega; pro dia a dia, prefira o servidor local.
+
 ## Como foi colocado no Render
 
 O projeto foi publicado no Render usando a criação manual do serviço web.
